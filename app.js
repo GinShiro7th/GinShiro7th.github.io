@@ -46,5 +46,5 @@ app.post("/upload", upload.single("fileToUpload"), async (req, res) => {
 module.exports = app;
 
 app.listen(port, () => {
-  console.log(`Сервер запущен на порту ${port}`);
+  console.log(`Сервер запущен на порту ${port}.`);
 });
