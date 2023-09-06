@@ -1,3 +1,8 @@
 const tg = window.Telegram.WebApp;
+tg.ready()
 
-console.log(tg);
+function sendDataToTg(){
+  
+  const file = document.getElementById("fileToUpload");
+  tg.sendData('123');
+}
