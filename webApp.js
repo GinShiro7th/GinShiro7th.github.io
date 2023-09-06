@@ -2,6 +2,7 @@ const tg = window.Telegram.WebApp;
 tg.ready()
 
 const fileInput = document.getElementById('fileToUpload');
+console.log(fileInput);
 
 fileInput.addEventListener('change', (event) => {
   const selectedFile = event.target.files[0];
