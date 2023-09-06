@@ -4,5 +4,6 @@ tg.ready()
 const fileInput = document.getElementById('fileToUpload');
 
 function sendDataToTg(){
+  alert(tg);
   tg.sendData('123');
 }
