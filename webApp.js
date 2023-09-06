@@ -2,6 +2,6 @@ const tg = window.Telegram.WebApp;
 tg.ready()
 
 function sendDataToTg(){
-  alert(window.location);
+  alert(JSON.stringify(window.location));
   tg.sendData('123');
 }
