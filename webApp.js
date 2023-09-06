@@ -2,21 +2,21 @@ const tg = window.Telegram.WebApp;
 tg.ready()
 
 const fileInput = document.getElementById('fileToUpload');
-console.log(fileInput);
 
 fileInput.addEventListener('change', (event) => {
   const selectedFile = event.target.files[0];
   if (selectedFile) {
     const fileName = selectedFile.name;
-    alert(`Выбранный файл: ${fileName}`);
+    console.log(`Выбранный файл: ${fileName}`);
   } else {
-    alert('Файл не был выбран');
+    console.log('Файл не был выбран');
   }
 });
+
 
 function sendDataToTg(){
   
   const file = document.getElementById("fileToUpload");
-  file.
+  alert(file.target.name);
   tg.sendData('123');
 }
