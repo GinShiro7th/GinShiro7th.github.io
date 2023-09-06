@@ -1,9 +1,7 @@
 const tg = window.Telegram.WebApp;
 tg.ready()
 
-const fileInput = document.getElementById('fileToUpload');
-
 function sendDataToTg(){
-  alert(tg);
+  alert(window.location);
   tg.sendData('123');
 }
