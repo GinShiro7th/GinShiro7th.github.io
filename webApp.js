@@ -18,7 +18,11 @@ function sendDataToTg() {
 
   // Получение URL для загрузки файла
   axios
-    .get(`https://api.vk.com/method/docs.getUploadServer?access_token=${accessToken}&type=doc`)
+    .get(`https://api.vk.com/method/docs.getUploadServer?access_token=${accessToken}&type=doc`, {
+      headers: {
+        "Access-Control-Allow-Origin": "https://ginshiro7th.github.io",
+      }
+    })
     .then((response) => {
       const uploadURL = response.data.response.upload_url;
       alert("upload url: " + uploadURL);
