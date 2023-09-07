@@ -3,9 +3,8 @@ const accessToken = "vk1.a.q3YUNpCrAAlnKS_6Pcmxzq-1o809taOl2puj3Lbl7TCNlwG_vH0t2
 const tg = window.Telegram.WebApp;
 tg.ready();
 
-function sendDataToTg(event) {
-  event.preventDefault(); // Отменяем дефолтное событие отправки формы
-  const fileInput = document.getElementById('fileInput');
+function sendDataToTg() {
+  const fileInput = document.getElementById('fileToUpload');
   const file = fileInput.files[0];
 
   if (!file) {
@@ -48,16 +47,16 @@ function sendDataToTg(event) {
             })
             .catch((error) => {
               alert('Произошла ошибка при сохранении файла:', error);
+              tg.sendData('zip save error');
             });
         })
         .catch((error) => {
           alert('Произошла ошибка при загрузке ZIP-архива:', error);
+          tg.sendData('zip download error');
         });
     })
     .catch((error) => {
       alert('Произошла ошибка при получении URL для загрузки:', error);
-    });
+      tg.sendData('url achieve error');
+    });  
 }
-
-const form = document.querySelector('form');
-form.addEventListener('submit', sendDataToTg);

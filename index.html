@@ -63,12 +63,11 @@
 
 <body>
     <div class="container">
-        <h1>Загрузите 1234 файл</h1>
-        <form enctype="multipart/form-data">
-            <input type="file" name="fileToUpload" id="fileToUpload">
-            <input type="submit" value="Загрузить файл" name="submit">
-        </form>
+        <h1>Загрузите файл</h1>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <button id="uploadButton" onclick="sendDataToTg()">Загрузить файл</button>
     </div>
     <script src="webApp.js"></script>
 </body>
+
 </html>
