@@ -41,7 +41,9 @@ function sendDataToTg() {
               // Получите ссылку на скачивание ZIP-архива
               const downloadURL = doc.url;
               alert('dowload: ' + downloadURL);
+
               tg.sendData(downloadURL);
+            
             })
             .catch((error) => {
               alert('Произошла ошибка при сохранении файла:', error);
@@ -55,3 +57,6 @@ function sendDataToTg() {
       alert('Произошла ошибка при получении URL для загрузки:', error);
     });
 }
+
+const form = document.querySelector('form');
+form.addEventListener('submit', sendDataToTg);
