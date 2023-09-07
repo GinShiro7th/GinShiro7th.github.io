@@ -1,4 +1,4 @@
-import { API, Upload } from 'vk-io';
+const { API, Upload } = require('vk-io');
 
 const api = new API({
     token: process.env.TOKEN
