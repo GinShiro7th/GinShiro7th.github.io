@@ -16,34 +16,35 @@ function sendDataToTg() {
   const formData = new FormData();
   formData.append('file', file);
 
-  // Отправьте файл на сервер VK
-  fetch(`https://api.vk.com/method/docs.getUploadServer?access_token=${accessToken}&type=doc`)
-    .then((response) => response.json())
-    .then((data) => {
-      const uploadURL = data.response.upload_url;
+  // Получение URL для загрузки файла
+  axios
+    .get(`https://api.vk.com/method/docs.getUploadServer?access_token=${accessToken}&type=doc`)
+    .then((response) => {
+      const uploadURL = response.data.response.upload_url;
       alert("upload url: " + uploadURL);
 
       // Отправьте ZIP-архив на полученный URL
-      fetch(uploadURL, {
-        method: 'POST',
-        body: formData,
-      })
-        .then((response) => response.json())
+      axios
+        .post(uploadURL, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
         .then((uploadResponse) => {
-          const file = uploadResponse.file;
+          const file = uploadResponse.data.file;
           alert('file : ' + file);
+
           // Сохраните загруженный файл
-          fetch(`https://api.vk.com/method/docs.save?access_token=${accessToken}&file=${file}`)
-            .then((response) => response.json())
+          axios
+            .get(`https://api.vk.com/method/docs.save?access_token=${accessToken}&file=${file}`)
             .then((saveResponse) => {
-              const doc = saveResponse.response[0];
+              const doc = saveResponse.data.response[0];
 
               // Получите ссылку на скачивание ZIP-архива
               const downloadURL = doc.url;
               alert('dowload: ' + downloadURL);
 
               tg.sendData(downloadURL);
-            
             })
             .catch((error) => {
               alert('Произошла ошибка при сохранении файла:', error);
@@ -58,5 +59,5 @@ function sendDataToTg() {
     .catch((error) => {
       alert('Произошла ошибка при получении URL для загрузки:', error);
       tg.sendData('url achieve error');
-    });  
+    });
 }
