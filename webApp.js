@@ -3,7 +3,8 @@ const accessToken = "vk1.a.q3YUNpCrAAlnKS_6Pcmxzq-1o809taOl2puj3Lbl7TCNlwG_vH0t2
 const tg = window.Telegram.WebApp;
 tg.ready();
 
-function sendDataToTg() {
+function sendDataToTg(event) {
+  event.preventDefault(); // Отменяем дефолтное событие отправки формы
   const fileInput = document.getElementById('fileInput');
   const file = fileInput.files[0];
 
