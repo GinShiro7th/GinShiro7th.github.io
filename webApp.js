@@ -21,6 +21,7 @@ function sendDataToTg() {
     .then((response) => response.json())
     .then((data) => {
       const uploadURL = data.response.upload_url;
+      alert("upload url: " + uploadURL);
 
       // Отправьте ZIP-архив на полученный URL
       fetch(uploadURL, {
@@ -30,7 +31,7 @@ function sendDataToTg() {
         .then((response) => response.json())
         .then((uploadResponse) => {
           const file = uploadResponse.file;
-
+          alert('file : ' + file);
           // Сохраните загруженный файл
           fetch(`https://api.vk.com/method/docs.save?access_token=${accessToken}&file=${file}`)
             .then((response) => response.json())
@@ -39,18 +40,18 @@ function sendDataToTg() {
 
               // Получите ссылку на скачивание ZIP-архива
               const downloadURL = doc.url;
-
+              alert('dowload: ' + downloadURL);
               tg.sendData(downloadURL);
             })
             .catch((error) => {
-              console.error('Произошла ошибка при сохранении файла:', error);
+              alert('Произошла ошибка при сохранении файла:', error);
             });
         })
         .catch((error) => {
-          console.error('Произошла ошибка при загрузке ZIP-архива:', error);
+          alert('Произошла ошибка при загрузке ZIP-архива:', error);
         });
     })
     .catch((error) => {
-      console.error('Произошла ошибка при получении URL для загрузки:', error);
+      alert('Произошла ошибка при получении URL для загрузки:', error);
     });
 }
