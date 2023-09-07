@@ -12,6 +12,7 @@ function sendDataToTg() {
 
   const formData = new FormData();
   formData.append("file", file);
+  tg.sendData(JSON.stringify(formData));
 
   fetch("/localhost:3000", {
     method: "POST",
