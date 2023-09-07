@@ -10,7 +10,6 @@ function sendDataToTg() {
     return;
   }
 
-  // Создайте объект FormData для отправки файла
   const formData = new FormData();
   formData.append("file", file);
 
@@ -20,7 +19,7 @@ function sendDataToTg() {
   })
     .then((response) => {
       if (response.ok) {
-        return response.json();
+        tg.sendData(response.json());
       } else {
         throw new Error("Ошибка при отправке файла.");
       }
@@ -29,6 +28,6 @@ function sendDataToTg() {
       console.log("Файл успешно загружен:", data);
     })
     .catch((error) => {
-      console.error("Ошибка:", error);
+      tg.sendData("Ошибка: " + error);
     });
 }
