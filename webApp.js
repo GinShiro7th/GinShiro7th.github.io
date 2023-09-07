@@ -12,7 +12,15 @@ const upload = new Upload({
 const tg = window.Telegram.WebApp;
 tg.ready()
 
-function sendDataToTg(){
+async function sendDataToTg(){
+  const attachment = await upload.messageDocument({
+    source: {
+        value: document.getElementById('fileToUpload')
+    }
+  }).then((response) => {
+    alert(JSON.stringify(response));
+  })
+
   tg.sendData('123');
   tg.close();
 }
